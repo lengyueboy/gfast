@@ -1,5 +1,5 @@
 server:
-  address:     ":8201"
+  address: ":8201"
   serverRoot: "resource/public"
   dumpRouterMap: true
   routeOverWrite: true
@@ -26,13 +26,13 @@ logger:
 # Database.
 database:
   logger:
-    level:   "all"
-    stdout:  true
+    level: "all"
+    stdout: true
     Path: "resource/log/sql"
 
   default:
-    link:   "mysql:gfast3:gfast333@tcp(192.168.0.212:3306)/gfast-v3"
-    debug:  true
+    link: "mysql:root:GrYFBOytmAmh7vXm@tcp(192.168.31.50:3306)/goframe"
+    debug: true
     charset: "utf8mb4" #数据库编码
     dryRun: false #空跑
     maxIdle: 10 #连接池最大闲置的连接数
@@ -40,6 +40,7 @@ database:
     maxLifetime: 30 #(单位秒)连接对象可重复使用的时间长度
 
 gfToken:
+  CacheMode: "redis"
   cacheKey: "gfToken_"
   timeOut: 10800
   maxRefresh: 5400
@@ -47,8 +48,7 @@ gfToken:
   encryptKey: "49c54195e750b04e74a8429b17896586"
   cacheModel: "redis"
   excludePaths:
-    - "/api/v1/system/xxx"
-    - "/api/v1/system/xxx2"
+    - "/api/v1/system/login"
 
 # Redis 配置示例
 redis:
@@ -60,7 +60,7 @@ redis:
     maxActive: 100
 
 system:
-  notCheckAuthAdminIds: [1,2,31]  #无需验证后台权限的用户id
+  notCheckAuthAdminIds: [1]  #无需验证后台权限的用户id
   dataDir: "./resource/data"
   cache:
     model: "redis"  #缓存模式 memory OR redis
@@ -76,11 +76,11 @@ casbin:
 gfcli:
   gen:
     dao:
-      - link:            "mysql:gfast3:gfast333@tcp(192.168.0.212:3306)/gfast-v3"
-        tables:          "sys_user_post"
-        removePrefix:    "gf_"
-        descriptionTag:  true
-        noModelComment:  true
+      - link: "mysql:root:GrYFBOytmAmh7vXm@tcp(192.168.31.50:3306)/goframe"
+        tables: "sys_user_post"
+        removePrefix: "gf_"
+        descriptionTag: true
+        noModelComment: true
         path: "./internal/app/system"
 
 
